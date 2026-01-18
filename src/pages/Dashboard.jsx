@@ -19,6 +19,7 @@ const Dashboard = () => {
   const [shareFile, setShareFile] = useState(null);
   const [currentPath, setCurrentPath] = useState(['Home']);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,10 +32,14 @@ const Dashboard = () => {
         fileService.getFiles(),
         fileService.getFolders()
       ]);
-      setFiles(filesRes.data);
-      setFolders(foldersRes.data);
+      setFiles(Array.isArray(filesRes?.data) ? filesRes.data : []);
+      setFolders(Array.isArray(foldersRes?.data) ? foldersRes.data : []);
     } catch (err) {
       console.error('Error loading data:', err);
+      setFiles([]);
+      setFolders([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -67,9 +72,9 @@ const Dashboard = () => {
   };
 
   const filteredFiles = fileService.searchFiles(files, searchQuery);
-  const filteredFolders = folders.filter(f => 
-    f.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredFolders = Array.isArray(folders) 
+    ? folders.filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    : [];
 
   return (
     <div className="min-h-screen bg-background flex w-full">
