@@ -17,9 +17,10 @@ const Trash = () => {
   const loadTrash = async () => {
     try {
       const res = await fileService.getTrash();
-      setTrashItems(res.data);
+      setTrashItems(Array.isArray(res?.data) ? res.data : []);
     } catch (err) {
       console.error('Error loading trash:', err);
+      setTrashItems([]);
     }
   };
 

@@ -1,7 +1,3 @@
-import axios from 'axios';
-
-const API_URL = '/api';
-
 // Dummy file data
 const dummyFiles = [
   { id: 1, name: 'Project Proposal.pdf', type: 'pdf', size: '2.4 MB', modified: '2024-01-15', folder: 'Documents' },
@@ -29,26 +25,16 @@ const dummyTrash = [
 
 export const fileService = {
   getFiles: async () => {
-    // Placeholder API call
-    return axios.get(`${API_URL}/files`)
-      .catch(() => {
-        // Return dummy data for demo
-        return { data: dummyFiles };
-      });
+    // Return dummy data directly (no real backend)
+    return Promise.resolve({ data: dummyFiles });
   },
 
   getFolders: async () => {
-    return axios.get(`${API_URL}/folders`)
-      .catch(() => {
-        return { data: dummyFolders };
-      });
+    return Promise.resolve({ data: dummyFolders });
   },
 
   getTrash: async () => {
-    return axios.get(`${API_URL}/trash`)
-      .catch(() => {
-        return { data: dummyTrash };
-      });
+    return Promise.resolve({ data: dummyTrash });
   },
 
   uploadFile: async (file, onProgress) => {
@@ -76,34 +62,32 @@ export const fileService = {
 
   deleteFile: async (fileId) => {
     console.log('Moving to trash:', fileId);
-    return axios.delete(`${API_URL}/files/${fileId}`)
-      .catch(() => ({ data: { success: true } }));
+    return Promise.resolve({ data: { success: true } });
   },
 
   restoreFile: async (fileId) => {
     console.log('Restoring file:', fileId);
-    return axios.post(`${API_URL}/files/${fileId}/restore`)
-      .catch(() => ({ data: { success: true } }));
+    return Promise.resolve({ data: { success: true } });
   },
 
   permanentDelete: async (fileId) => {
     console.log('Permanently deleting:', fileId);
-    return axios.delete(`${API_URL}/trash/${fileId}`)
-      .catch(() => ({ data: { success: true } }));
+    return Promise.resolve({ data: { success: true } });
   },
 
   shareFile: async (fileId, email, permission) => {
     console.log('Sharing file:', { fileId, email, permission });
-    return axios.post(`${API_URL}/files/${fileId}/share`, { email, permission })
-      .catch(() => ({
-        data: {
-          success: true,
-          shareLink: `https://cloudnest.app/share/${fileId}-${Date.now().toString(36)}`
-        }
-      }));
+    return Promise.resolve({
+      data: {
+        success: true,
+        shareLink: `https://cloudnest.app/share/${fileId}-${Date.now().toString(36)}`
+      }
+    });
   },
 
   searchFiles: (files, query) => {
+    // Ensure files is an array
+    if (!Array.isArray(files)) return [];
     if (!query) return files;
     const lowerQuery = query.toLowerCase();
     return files.filter(file => 
