@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FileText, Image, FileSpreadsheet, Presentation, Archive, File, Share2, Trash2, MoreVertical, Download } from 'lucide-react';
+import { FileText, Image, FileSpreadsheet, Presentation, Archive, File, Share2, Trash2, MoreVertical, Download, Send } from 'lucide-react';
 
-const FileCard = ({ file, onShare, onDelete, isFolder = false }) => {
+const FileCard = ({ file, onShare, onDelete, onSend, isFolder = false }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
@@ -166,6 +166,17 @@ const FileCard = ({ file, onShare, onDelete, isFolder = false }) => {
                 >
                   <Download size={14} />
                   Download
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSend?.(file);
+                    setShowMenu(false);
+                  }}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary transition-colors"
+                >
+                  <Send size={14} />
+                  Send
                 </button>
                 <button
                   onClick={(e) => {
