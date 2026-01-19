@@ -7,6 +7,8 @@ import FolderCard from '../components/FolderCard';
 import FolderBreadcrumbs from '../components/FolderBreadcrumbs';
 import FileUpload from '../components/FileUpload';
 import ShareModal from '../components/ShareModal';
+import UserPresence from '../components/UserPresence';
+import LiveActivity from '../components/LiveActivity';
 import authService from '../services/authService';
 import fileService from '../services/fileService';
 
@@ -119,6 +121,12 @@ const Dashboard = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="input-field pl-10"
               />
+            </div>
+
+            {/* Real-time Features */}
+            <div className="hidden md:flex items-center gap-2">
+              <UserPresence />
+              <LiveActivity />
             </div>
 
             {/* Actions */}

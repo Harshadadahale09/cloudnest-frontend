@@ -1,0 +1,18 @@
+{
+  "name": "CloudNest",
+  "short_name": "CloudNest",
+  "description": "Your files, everywhere. Secure cloud storage made simple.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#3b82f6",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["productivity", "utilities"]
+}

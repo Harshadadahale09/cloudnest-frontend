@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Cloud, LayoutDashboard, Trash2, Settings, LogOut, HardDrive, FolderOpen, Star, Clock } from 'lucide-react';
+import { Cloud, LayoutDashboard, Trash2, Settings, LogOut, HardDrive, Star, Clock, CreditCard } from 'lucide-react';
 
 const Sidebar = ({ onLogout }) => {
   const location = useLocation();
@@ -43,6 +43,12 @@ const Sidebar = ({ onLogout }) => {
           <p className="text-xs text-muted-foreground">
             7.5 GB of 15 GB used
           </p>
+          <Link 
+            to="/pricing" 
+            className="text-xs text-primary hover:underline mt-2 inline-block font-medium"
+          >
+            Upgrade storage →
+          </Link>
         </div>
       </div>
 
@@ -62,6 +68,22 @@ const Sidebar = ({ onLogout }) => {
           ))}
         </ul>
       </nav>
+
+      {/* Upgrade Banner */}
+      <div className="px-4 mb-4">
+        <Link 
+          to="/pricing"
+          className="block p-4 cloud-gradient rounded-xl text-primary-foreground transition-all hover:opacity-90"
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <CreditCard size={16} />
+            <span className="font-semibold text-sm">Go Pro</span>
+          </div>
+          <p className="text-xs opacity-90">
+            Get 100 GB storage & premium features
+          </p>
+        </Link>
+      </div>
 
       {/* Bottom actions */}
       <div className="p-3 border-t border-border space-y-1">
