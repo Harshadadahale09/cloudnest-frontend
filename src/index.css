@@ -102,6 +102,31 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    /* Mobile/Desktop app ready styles */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    overscroll-behavior: none;
+  }
+
+  /* Safe area insets for notched devices */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  /* Prevent text selection for app-like feel */
+  .app-mode {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Allow text selection in content areas */
+  .app-mode .selectable {
+    -webkit-user-select: text;
+    user-select: text;
   }
 }
 
