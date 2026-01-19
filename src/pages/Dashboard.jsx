@@ -7,6 +7,7 @@ import FolderCard from '../components/FolderCard';
 import FolderBreadcrumbs from '../components/FolderBreadcrumbs';
 import FileUpload from '../components/FileUpload';
 import ShareModal from '../components/ShareModal';
+import SendFileModal from '../components/SendFileModal';
 import UserPresence from '../components/UserPresence';
 import LiveActivity from '../components/LiveActivity';
 import authService from '../services/authService';
@@ -19,6 +20,7 @@ const Dashboard = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [showUpload, setShowUpload] = useState(false);
   const [shareFile, setShareFile] = useState(null);
+  const [sendFile, setSendFile] = useState(null);
   const [currentPath, setCurrentPath] = useState(['Home']);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -197,6 +199,7 @@ const Dashboard = () => {
                     key={file.id}
                     file={file}
                     onShare={setShareFile}
+                    onSend={setSendFile}
                     onDelete={handleDeleteFile}
                   />
                 ))}
@@ -223,6 +226,13 @@ const Dashboard = () => {
         file={shareFile}
         isOpen={!!shareFile}
         onClose={() => setShareFile(null)}
+      />
+
+      {/* Send File Modal */}
+      <SendFileModal
+        file={sendFile}
+        isOpen={!!sendFile}
+        onClose={() => setSendFile(null)}
       />
     </div>
   );
