@@ -62,7 +62,7 @@ const Signup = () => {
               <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="John Doe"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="input-field pl-10"

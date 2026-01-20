@@ -117,7 +117,7 @@ const CheckoutModal = ({ isOpen, onClose, plan, onComplete }) => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="John Doe"
+                  placeholder="Name"
                   className="input-field"
                   required
                 />
